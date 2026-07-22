@@ -8,6 +8,7 @@ import { useLocale } from "../lib/LocaleContext";
 import { getT } from "../lib/translations";
 import * as simpleIcons from "simple-icons";
 import { siReact } from "simple-icons";
+import Image from "next/image";
 
 export const SkillIcons = {
   TypeScript: (
@@ -478,7 +479,7 @@ export default function About() {
   }, []);
 
   const stats: { key: StatKey; number: string; label: string }[] = [
-    { key: "projectsBuilt", number: "15", label: a.stats.projectsBuilt },
+    { key: "projectsBuilt", number: "16", label: a.stats.projectsBuilt },
     {
       key: "repos",
       number: githubStats ? `${githubStats.repos}` : "—",
@@ -628,7 +629,14 @@ export default function About() {
           </div>
           <div className={styles.bioImageCard}>
             <div className={styles.imagePlaceholder}>
-              <span className={styles.imageLabel}>{a.bio.photoSoon}</span>
+              <Image
+                src="/images/Benoit_Tremblay_2.png"
+                alt="Benoit Tremblay"
+                fill
+                sizes="(max-width: 768px) 100vw, 300px"
+                className={styles.heroImg}
+                priority
+              />
             </div>
           </div>
         </div>

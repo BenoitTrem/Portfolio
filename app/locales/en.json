@@ -176,6 +176,10 @@
         "title": "File Managers",
         "description": "A JSP web application built with Spring Boot and a JWT-secured REST API — featuring user management, file uploading, and a comment system with moderation."
       },
+      "beanuttsGames": {
+        "title": "Beanutts Games",
+        "description": "The official website for Beanutts Games, my solo indie game studio — built with Next.js and TypeScript, showcasing my games, studio news, and updates."
+      },
       "portfolio": {
         "title": "My Portfolio",
         "description": "A personal portfolio website built with Next.js and TypeScript — showcasing my projects and skills, with multilingual support and dark/light mode."

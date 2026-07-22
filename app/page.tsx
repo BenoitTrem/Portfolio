@@ -402,8 +402,8 @@ export default function Home() {
           <div className={styles.heroPhoto}>
             <div className={styles.heroImgWrapper}>
               <Image
-                src="/images/ProfilIconTest.jpg"
-                alt="Your Name"
+                src="/images/Benoit_Tremblay.png"
+                alt="Benoit Tremblay"
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"
                 className={styles.heroImg}

@@ -176,6 +176,10 @@
         "title": "Gestionnaire de Fichiers",
         "description": "Application web JSP développée avec Spring Boot et une API REST sécurisée par JWT — permettant la gestion des utilisateurs, le téléversement de fichiers et un système de commentaires avec modération."
       },
+      "beanuttsGames": {
+        "title": "Beanutts Games",
+        "description": "Le site officiel de Beanutts Games, mon studio de jeux indépendant solo — construit avec Next.js et TypeScript, présentant mes jeux, les nouvelles du studio et les mises à jour."
+      },
       "portfolio": {
         "title": "Mon Portfolio",
         "description": "Site portfolio personnel développé avec Next.js et TypeScript — présentant mes projets et compétences, avec support multilingue et mode sombre/clair."
