@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./home.module.css";
 import {
   Smartphone,
@@ -14,6 +15,7 @@ import {
   Globe,
   CheckCircle2,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { useLocale } from "./lib/LocaleContext";
 import { getT } from "./lib/translations";
@@ -245,12 +247,87 @@ function Terminal({
   );
 }
 
+function CvModal({
+  open,
+  onClose,
+  labels,
+}: {
+  open: boolean;
+  onClose: () => void;
+  labels: { title: string; en: string; fr: string };
+}) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return createPortal(
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div
+        className={styles.modalBox}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cv-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={styles.modalHeader}>
+          <h3 id="cv-modal-title" className={styles.modalTitle}>
+            {labels.title}
+          </h3>
+          <button
+            type="button"
+            className={styles.modalCloseBtn}
+            onClick={onClose}
+            aria-label="Close"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className={styles.modalOptions}>
+          <a
+            href="/cv-en.pdf"
+            download
+            className={styles.modalOption}
+            onClick={onClose}
+          >
+            <span className={styles.modalOptionText}>{labels.en}</span>
+            <Download size={16} className={styles.modalOptionIcon} />
+          </a>
+
+          <a
+            href="/cv-fr.pdf"
+            download
+            className={styles.modalOption}
+            onClick={onClose}
+          >
+            <span className={styles.modalOptionText}>{labels.fr}</span>
+            <Download size={16} className={styles.modalOptionIcon} />
+          </a>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 const GITHUB_USER = "BenoitTrem";
 
 export default function Home() {
   const locale = useLocale();
   const t = getT(locale);
   const ROTATING_WORDS = t.rotatingWords;
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   const SERVICES = [
     {
@@ -362,9 +439,13 @@ export default function Home() {
             <p className={styles.heroSub}>{t.home.sub}</p>
             <div className={styles.ctaWrapper}>
               <div className={styles.ctaDiv}>
-                <a href="/cv.pdf" download className={styles.ctaPrimary}>
+                <button
+                  type="button"
+                  onClick={() => setCvModalOpen(true)}
+                  className={styles.ctaPrimary}
+                >
                   <Download size={15} /> {t.home.download}
-                </a>
+                </button>
                 <div className={styles.divider_3} />
                 <a href="/contact" className={styles.ctaPrimary}>
                   {t.home.ctaContact} <ArrowRight size={15} />
@@ -576,6 +657,15 @@ export default function Home() {
           </a>
         </div>
       </section>
+      <CvModal
+        open={cvModalOpen}
+        onClose={() => setCvModalOpen(false)}
+        labels={{
+          title: t.downloadModal.title,
+          en: t.downloadModal.english,
+          fr: t.downloadModal.french,
+        }}
+      />
     </main>
   );
 }

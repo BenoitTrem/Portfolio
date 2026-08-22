@@ -276,5 +276,10 @@
     "navigation": "Liens",
     "getInTouch": "Me rejoindre",
     "rights": "Tous droits réservés."
+  },
+  "downloadModal": {
+    "title": "Choisissez une langue",
+    "english": "Anglais",
+    "french": "Français"
   }
 }

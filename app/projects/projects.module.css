@@ -562,7 +562,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn 0.3s ease;
   backdrop-filter: blur(12px);
   transition: padding-left 0.3s ease;
 }

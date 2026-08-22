@@ -276,5 +276,10 @@
     "navigation": "Links",
     "getInTouch": "Connect",
     "rights": "All rights reserved."
+  },
+  "downloadModal": {
+    "title": "Choose a language",
+    "english": "English",
+    "french": "French"
   }
 }
